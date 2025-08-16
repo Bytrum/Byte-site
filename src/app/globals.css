@@ -3,8 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
 /* Reset and Base Styles */
@@ -690,17 +689,11 @@ body {
 }
 
 .member-avatar {
-    margin-bottom: 1.5rem;
-}
-
-.avatar-placeholder {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--medium-gray), var(--silver));
-    margin: 0 auto;
-    border: 3px solid var(--silver);
-    box-shadow: var(--glow-shadow);
+    margin-bottom: 30px;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
 }
 
 .member-info h3 {
@@ -1322,11 +1315,6 @@ body {
         margin-bottom: 2rem;
     }
 
-    .terminal-window {
-        max-width: 100%;
-        height: 300px;
-    }
-
     .section-title {
         font-size: 2rem;
     }
@@ -1425,10 +1413,6 @@ body {
 
     .terminal-content {
         font-size: 0.75rem;
-    }
-
-    .terminal-window {
-        height: 250px;
     }
 
     .section-title {
@@ -1545,10 +1529,11 @@ body {
     flex-direction: column;
     position: relative;
     z-index: 1;
+    max-width: 100%;
+    height: 300px;
 }
 
 .terminal-window::before {
-    content: '';
     position: absolute;
     top: -2px;
     left: -2px;

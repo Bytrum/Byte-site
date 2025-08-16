@@ -13,10 +13,13 @@
  * The component uses Next.js Link for internal navigation.
  */
 
+import { BlurFade } from "@/components/magicui/blur-fade";
+
 import Link from 'next/link';
 
 export default function Footer() {
   return (
+    <BlurFade delay={0.06} inView>
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
@@ -61,15 +64,16 @@ export default function Footer() {
             <h4>Contact</h4>
             <p>hello@byte.com</p>
             <p>+1 (555) 123-4567</p>
-            <p>123 Innovation St, Tech City</p>
+            <p>Egypt</p>
           </div>
         </div>
 
         {/* Copyright Notice */}
         <div className="footer-bottom">
-          <p>&copy; 2024 <span className="byte-glow">Byte</span>. All rights reserved.</p>
+          <p>&copy; 2025 <span className="byte-glow">Byte</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>
+    </BlurFade>
   );
 }

@@ -12,6 +12,15 @@
  * 
  * The component uses React hooks for state management and animations.
  */
+import { BlurFade } from "@/components/magicui/blur-fade";
+import {Avatar} from "@heroui/avatar";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import {
+  AnimatedSpan,
+  Terminal,
+  TypingAnimation,
+} from "@/components/magicui/terminal";
+
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -22,51 +31,11 @@ export default function Home() {
   // State management for animations and interactions
   const [currentWordIndex, setCurrentWordIndex] = useState(0); // Controls word-by-word animation
   const [showTerminal, setShowTerminal] = useState(false); // Controls terminal visibility
-  const [terminalText, setTerminalText] = useState(''); // Stores terminal output text
-  const [cursorVisible, setCursorVisible] = useState(true); // Controls cursor blink animation
+  const [, setTerminalText] = useState(''); // Stores terminal output text
+  const [, setCursorVisible] = useState(true); // Controls cursor blink animation
 
   // Welcome text that appears word by word
   const welcomeWords = ['Welcome', 'to', 'Byte'];
-  
-  // C++ code with syntax highlighting classes for the terminal simulation
-  // Each line has a CSS class for proper syntax highlighting
-  const cppCodeLines = [
-    { text: '#include <iostream>', class: 'cpp-include' },
-    { text: '#include <string>', class: 'cpp-include' },
-    { text: '#include <vector>', class: 'cpp-include' },
-    { text: '', class: '' },
-    { text: 'class TeamIdentity {', class: 'cpp-class' },
-    { text: 'private:', class: 'cpp-keyword' },
-    { text: '    std::string teamName = "Byte";', class: 'cpp-string' },
-    { text: '    std::vector<std::string> coreValues = {', class: 'cpp-keyword' },
-    { text: '        "Innovation",', class: 'cpp-string' },
-    { text: '        "Excellence",', class: 'cpp-string' },
-    { text: '        "Collaboration",', class: 'cpp-string' },
-    { text: '        "Creativity"', class: 'cpp-string' },
-    { text: '    };', class: 'cpp-operator' },
-    { text: '', class: '' },
-    { text: 'public:', class: 'cpp-keyword' },
-    { text: '    void displayIdentity() {', class: 'cpp-function' },
-    { text: '        std::cout << "=== BYTE TEAM IDENTITY ===" << std::endl;', class: 'cpp-output' },
-    { text: '        std::cout << "Team Name: " << teamName << std::endl;', class: 'cpp-output' },
-    { text: '        std::cout << "Core Values:" << std::endl;', class: 'cpp-output' },
-    { text: '', class: '' },
-    { text: '        for(const auto& value : coreValues) {', class: 'cpp-keyword' },
-    { text: '            std::cout << "  - " << value << std::endl;', class: 'cpp-output' },
-    { text: '        }', class: 'cpp-operator' },
-    { text: '', class: '' },
-    { text: '        std::cout << "\\nMission: Digital Innovation" << std::endl;', class: 'cpp-output' },
-    { text: '        std::cout << "Status: Active & Growing" << std::endl;', class: 'cpp-output' },
-    { text: '        std::cout << "=========================" << std::endl;', class: 'cpp-output' },
-    { text: '    }', class: 'cpp-operator' },
-    { text: '};', class: 'cpp-operator' },
-    { text: '', class: '' },
-    { text: 'int main() {', class: 'cpp-function' },
-    { text: '    TeamIdentity byte;', class: 'cpp-class' },
-    { text: '    byte.displayIdentity();', class: 'cpp-function' },
-    { text: '    return 0;', class: 'cpp-keyword' },
-    { text: '}', class: 'cpp-operator' }
-  ];
 
   // Effect for word-by-word welcome text animation
   useEffect(() => {
@@ -86,75 +55,15 @@ export default function Home() {
     return () => clearInterval(wordTimer);
   },);
 
-  // Effect for terminal typing animation
-  useEffect(() => {
-    if (showTerminal) {
-      let currentLineIndex = 0;
-      let currentCharIndex = 0;
-      
-      const typeTimer = setInterval(() => {
-        if (currentLineIndex < cppCodeLines.length) {
-          const currentLine = cppCodeLines[currentLineIndex];
-          
-          if (currentCharIndex < currentLine.text.length) {
-            // Add one character at a time to simulate typing
-            setTerminalText(prev => {
-              const lines = prev.split('\n');
-              if (lines.length <= currentLineIndex) {
-                lines.push('');
-              }
-              lines[currentLineIndex] = currentLine.text.substring(0, currentCharIndex + 1);
-              return lines.join('\n');
-            });
-            currentCharIndex++;
-          } else {
-            // Move to next line
-            currentLineIndex++;
-            currentCharIndex = 0;
-            if (currentLineIndex < cppCodeLines.length) {
-              setTerminalText(prev => prev + '\n');
-            }
-          }
-        } else {
-          clearInterval(typeTimer);
-        }
-      }, 50); // 50ms delay between each character
-
-      return () => clearInterval(typeTimer);
-    }
-  }, [showTerminal]);
-
-  // Effect for cursor blink animation
-  useEffect(() => {
-    const cursorTimer = setInterval(() => {
-      setCursorVisible(prev => !prev);
-    }, 500); // 500ms blink interval
-
-    return () => clearInterval(cursorTimer);
-  }, []);
-
   // Function to render syntax highlighted code in the terminal
-  const renderHighlightedCode = () => {
-    const lines = terminalText.split('\n');
-    return lines.map((line, lineIndex) => {
-      const codeLine = cppCodeLines[lineIndex];
-      if (!codeLine) return <div key={lineIndex}>{line}</div>;
-      return (
-        <div key={lineIndex} className={codeLine.class}>
-          {line}
-        </div>
-      );
-    });
-  };
-
   return (
     <main>
       {/* Navigation component - appears on all pages */}
       <Navigation />
-
       {/* Hero Section - Main landing area with welcome text and terminal */}
       <section className="hero">
         <div className="hero-container">
+          <BlurFade delay={0.01} inView>
           <div className="hero-content">
             {/* Animated welcome title that appears word by word */}
             <h1 className="hero-title">
@@ -183,36 +92,69 @@ export default function Home() {
               </Link>
             </div>
           </div>
+          </BlurFade>
 
           {/* Interactive C++ Terminal - Simulates a real terminal with syntax highlighting */}
-          <div className="hero-terminal">
-            {showTerminal && (
-              <div className="terminal-window">
-                <div className="terminal-header">
-                  <div className="terminal-buttons">
-                    <span className="terminal-btn terminal-btn-close"></span>
-                    <span className="terminal-btn terminal-btn-minimize"></span>
-                    <span className="terminal-btn terminal-btn-maximize"></span>
-                  </div>
-                  <div className="terminal-title">byte-team.cpp</div>
-                </div>
-                <div className="terminal-body">
-                  <div className="terminal-content">
-                    <pre className="code-output">
-                      <code>
-                        {renderHighlightedCode()}
-                        {cursorVisible && <span className="cursor">|</span>}
-                      </code>
-                    </pre>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
+          <BlurFade delay={0.02} inView>
+              <div className="w-full h-200 overflow-auto flex items-center justify-center">
+                <Terminal>
+                  <TypingAnimation>&gt; pnpm dlx shadcn@latest init</TypingAnimation>
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Preflight checks.</span>
+                    </AnimatedSpan>
+
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Verifying framework. Found Next.js.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Validating Tailwind CSS.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Validating import alias.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Writing components.json.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Checking registry.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Updating tailwind.config.ts</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Updating app/globals.css</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>✔ Installing dependencies.</span>
+                    </AnimatedSpan>
+            
+                    <AnimatedSpan className="text-muted-foreground">
+                      <span>ℹ Updated 1 file:</span>
+                      <span className="pl-2">- lib/utils.ts</span>
+                    </AnimatedSpan>
+            
+                    <TypingAnimation className="text-muted-foreground">
+                      Success! Project initialization completed.
+                    </TypingAnimation>
+            
+                    <TypingAnimation className="text-muted-foreground">
+                      You may now add components.
+                    </TypingAnimation>
+                </Terminal>
+    </div>
+          </BlurFade>
         </div>
       </section>
 
       {/* Services Section - Showcases Byte's core offerings */}
+      <BlurFade delay={0.03} inView>
       <section className="services">
         <div className="container">
           <h2 className="section-title">What We Do</h2>
@@ -260,8 +202,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </BlurFade>
 
       {/* Featured Projects Section - Preview of Byte's recent work */}
+      <BlurFade delay={0.04} inView>
       <section className="featured-projects">
         <div className="container">
           <h2 className="section-title">Featured Projects</h2>
@@ -269,6 +213,7 @@ export default function Home() {
             {/* GhostFreakOS - Custom Linux Distribution */}
             <div className="project-card">
               <div className="project-image">
+                {/* Placeholder image */}
                 <div className="project-overlay">
                   <Link href="/projects" className="btn btn-outline">
                     View Details
@@ -297,6 +242,7 @@ export default function Home() {
             {/* ZenShell - Linux Shell */}
             <div className="project-card">
               <div className="project-image">
+                <img src="" alt="" />
                 <div className="project-overlay">
                   <Link href="/projects" className="btn btn-outline">
                     View Details
@@ -325,6 +271,7 @@ export default function Home() {
             {/* AI-Powered Dashboard */}
             <div className="project-card">
               <div className="project-image">
+                {/* Placeholder image */}
                 <div className="project-overlay">
                   <Link href="/projects" className="btn btn-outline">
                     View Details
@@ -352,46 +299,49 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </BlurFade>
 
       {/* Team Preview */}
+      <BlurFade delay={0.05} inView>
       <section className="team-preview">
         <div className="container">
           <h2 className="section-title">Meet Our Team</h2>
           <div className="team-grid">
-            {/* Bad Request - CEO & Founder */}
+
+            {/* Omar Sameh */}
             <div className="team-member">
               <div className="member-avatar">
-                <div className="avatar-placeholder"></div>
+                  <Avatar src="https://github.com/om7iux.png"/>
               </div>
-              <h3>Bad Request</h3>
-              <p>CEO & Founder</p>
+              <h3>Omar Sameh</h3>
+              <h3>Founder </h3>
+            </div>  
+
+            {/* Asaad Zein */}
+            <div className="team-member">
+              <div className="member-avatar">
+                  <Avatar src="https://github.com/asaadzx.png"/>
+              </div>
+              <h3>Asaadzx</h3>
+              <h3>Software Engineer and Manager</h3>
             </div>
 
-            {/* Example Manager */}
+            {/* Ahmed Shafik */}
             <div className="team-member">
               <div className="member-avatar">
-                <div className="avatar-placeholder"></div>
+                  <Avatar src="https://github.com/Lazysniperz.png"/>
               </div>
-              <h3>Example Manager</h3>
-              <p>Manager</p>
+              <h3>Ahmed Shafik</h3>
+              <h3>Software Engineer and Manager</h3>
             </div>
-
-            {/* Example Developer */}
+            
+            {/* Basmala mahmoad */}
             <div className="team-member">
               <div className="member-avatar">
-                <div className="avatar-placeholder"></div>
+                  <Avatar src="https://github.com/basmalamahmoud32010-ai.png"/>
               </div>
-              <h3>Example Developer</h3>
-              <p>Lead Developer</p>
-            </div>
-
-            {/* Additional Team Member Placeholder */}
-            <div className="team-member">
-              <div className="member-avatar">
-                <div className="avatar-placeholder"></div>
-              </div>
-              <h3>Team Member</h3>
-              <p>Developer</p>
+              <h3>Basmala Mahmoad</h3>
+              <h3>Social Media Manager</h3>
             </div>
           </div>
           <div className="text-center">
@@ -402,8 +352,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      </BlurFade>
       <Footer />
+      <SmoothCursor />
     </main>
   );
 }

@@ -143,7 +143,6 @@ export default function Team() {
             {teamMembers.Managers.map((member, index) => (
               <div key={index} className="team-member-card">
                 <div className="member-avatar">
-                  <div className="avatar-placeholder"></div>
                 </div>
                 <div className="member-info">
                   <h3>{member.name}</h3>
@@ -186,7 +185,6 @@ export default function Team() {
             {teamMembers.Developers.map((member, index) => (
               <div key={index} className="team-member-card">
                 <div className="member-avatar">
-                  <div className="avatar-placeholder"></div>
                 </div>
                 <div className="member-info">
                   <h3>{member.name}</h3>
