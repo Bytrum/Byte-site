@@ -1191,20 +1191,6 @@ body {
     box-shadow: var(--glow-shadow);
 }
 
-.member-avatar {
-    margin-bottom: 1rem;
-}
-
-.avatar-placeholder {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--medium-gray), var(--silver));
-    margin: 0 auto;
-    border: 2px solid var(--silver);
-    box-shadow: var(--glow-shadow);
-}
-
 .team-member h3 {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;

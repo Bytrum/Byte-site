@@ -81,10 +81,10 @@ export default function Home() {
           return prev;
         }
       });
-    }, 800); // 800ms delay between each word
+    }, 200); // 800ms delay between each word
 
     return () => clearInterval(wordTimer);
-  }, []);
+  },);
 
   // Effect for terminal typing animation
   useEffect(() => {

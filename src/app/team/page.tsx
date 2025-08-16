@@ -1,8 +1,8 @@
 'use client';
 
+import {Avatar, AvatarGroup, AvatarIcon} from "@heroui/avatar";
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 
 const teamMembers = {
   Owner: [
@@ -13,6 +13,10 @@ const teamMembers = {
       avatar: 'https://github.com/om7iux.png',
       social: {
         github: 'https://github.com/om7iux',
+        linkedin: '#',    
+        discord: '#',
+        instagram: '#',
+        portfolio: '#'
       }
     }
   ],
@@ -91,7 +95,7 @@ export default function Team() {
             {teamMembers.Owner.map((member, index) => (
               <div key={index} className="team-member-card">
                 <div className="member-avatar">
-                  <div className="avatar-placeholder"></div>
+                  <Avatar isBordered radius="full" src={member.avatar}  />
                 </div>
                 <div className="member-info">
                   <h3>{member.name}</h3>

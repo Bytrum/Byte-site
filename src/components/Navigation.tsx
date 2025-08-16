@@ -35,7 +35,7 @@ export default function Navigation() {
         <div className="nav-logo">
           <Link href="/" className="logo-link">
             <Image
-              src="/Byte-banner.png"
+              src="https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
               alt="Byte Logo"
               width={180}
               height={60}
