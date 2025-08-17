@@ -88,59 +88,71 @@ export default function Home() {
           </div>
           </BlurFade>
 
-          {/* Interactive Terminal - Simulates a real terminal with syntax highlighting */}
+          {/* Interactive Terminal - Byte Team Project Setup */}
           <BlurFade delay={0.02} inView>
               <div className="w-full h-200 overflow-auto flex items-center justify-center">
                 <Terminal>
-                  <TypingAnimation>&gt; pnpm dlx shadcn@latest init</TypingAnimation>
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Preflight checks.</span>
-                    </AnimatedSpan>
+                  <TypingAnimation className="text-blue-400 font-bold">&gt; byte-team --init --project &quot;amazing-collaboration&quot;</TypingAnimation>
+                  
+                  <AnimatedSpan className="text-green-400">
+                    <span>🚀 Byte Team - Initializing Project Environment</span>
+                  </AnimatedSpan>
 
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Verifying framework. Found Next.js.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-cyan-400">
+                    <span>⚡ Loading team capabilities...</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Validating Tailwind CSS.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Cybersecurity experts: Ready</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Validating import alias.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Linux specialists: Ready</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Writing components.json.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Documentation wizards: Ready</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Checking registry.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Development ninjas: Ready</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Updating tailwind.config.ts</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-yellow-400">
+                    <span>🔄 Syncing team knowledge base...</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Updating app/globals.css</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-blue-400">
+                    <span>📚 Loading: Security protocols, Linux distros, Tech docs</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>✔ Installing dependencies.</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-purple-400">
+                    <span>🎯 Setting up collaboration workspace...</span>
+                  </AnimatedSpan>
             
-                    <AnimatedSpan className="text-muted-foreground">
-                      <span>ℹ Updated 1 file:</span>
-                      <span className="pl-2">- lib/utils.ts</span>
-                    </AnimatedSpan>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Team communication: Established</span>
+                  </AnimatedSpan>
             
-                    <TypingAnimation className="text-muted-foreground">
-                      Success! Project initialization completed.
-                    </TypingAnimation>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Project repository: Configured</span>
+                  </AnimatedSpan>
             
-                    <TypingAnimation className="text-muted-foreground">
-                      You may now add components.
-                    </TypingAnimation>
+                  <AnimatedSpan className="text-green-400">
+                    <span>✅ Development tools: Deployed</span>
+                  </AnimatedSpan>
+            
+                  <AnimatedSpan className="text-cyan-400">
+                    <span>🌟 Byte Team is now ready to create amazing projects together!</span>
+                  </AnimatedSpan>
+            
+                  <TypingAnimation className="text-yellow-400 font-bold">
+                    🎉 Project environment initialized successfully!
+                  </TypingAnimation>
+            
+                  <TypingAnimation className="text-green-400">
+                    Ready to build, secure, and innovate with Byte Team! 🚀
+                  </TypingAnimation>
                 </Terminal>
     </div>
           </BlurFade>
