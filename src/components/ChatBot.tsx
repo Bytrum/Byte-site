@@ -137,7 +137,7 @@ export default function ChatBot() {
 
   const sendToDiscord = async () => {
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_SUPPORT_WEBHOOK;
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_SUPPORT_WEBHOOK || '';
       
       const embed = {
         title: "🤖 New Support Request from Byte AI Chat",

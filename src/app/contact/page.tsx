@@ -80,7 +80,7 @@ export default function Contact() {
 
     try {
       // Discord webhook URL - replace with your actual webhook URL
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL;
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || '';
       
       // Create beautiful embed message
       const embed = {
