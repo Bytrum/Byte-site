@@ -12,7 +12,6 @@
  * 
  * The component uses React hooks for state management and Next.js for routing.
  */
-import { BlurFade } from "@/components/magicui/blur-fade";
 
 import { useState } from 'react';
 import Link from 'next/link';

@@ -5,7 +5,6 @@
  * 
  * This is the main homepage of the Byte website. It features:
  * - Word-by-word welcome text animation
- * - Interactive C++ terminal simulation
  * - Services showcase
  * - Featured projects preview
  * - Team preview section
@@ -88,7 +87,7 @@ export default function Home() {
           </div>
           </BlurFade>
 
-          {/* Interactive C++ Terminal - Simulates a real terminal with syntax highlighting */}
+          {/* Interactive Terminal - Simulates a real terminal with syntax highlighting */}
           <BlurFade delay={0.02} inView>
               <div className="w-full h-200 overflow-auto flex items-center justify-center">
                 <Terminal>
