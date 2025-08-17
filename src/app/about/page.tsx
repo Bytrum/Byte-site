@@ -29,24 +29,9 @@ const values = [
 
 const timeline = [
   {
-    year: '2024',
-    title: 'Global Expansion',
-    description: 'Expanded our team to 25+ members and opened offices in multiple countries.'
-  },
-  {
-    year: '2023',
-    title: 'AI Integration',
-    description: 'Launched our AI-powered solutions division and completed 50+ successful projects.'
-  },
-  {
-    year: '2022',
-    title: 'Team Growth',
-    description: 'Grew our team to 15 members and established partnerships with leading tech companies.'
-  },
-  {
-    year: '2021',
-    title: 'Company Founded',
-    description: 'Byte was founded with a vision to revolutionize digital experiences through innovation.'
+    year: '2025',
+    title: 'The Birth of Byte',
+    description: 'Byte was founded with a vision to revolutionize digital experiences through innovation and cutting-edge technology.'
   }
 ];
 
