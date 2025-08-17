@@ -30,9 +30,6 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   // State management for animations and interactions
   const [currentWordIndex, setCurrentWordIndex] = useState(0); // Controls word-by-word animation
-  const [showTerminal, setShowTerminal] = useState(false); // Controls terminal visibility
-  const [, setTerminalText] = useState(''); // Stores terminal output text
-  const [, setCursorVisible] = useState(true); // Controls cursor blink animation
 
   // Welcome text that appears word by word
   const welcomeWords = ['Welcome', 'to', 'Byte'];
@@ -45,8 +42,6 @@ export default function Home() {
           return prev + 1;
         } else {
           clearInterval(wordTimer);
-          // Show terminal after welcome text is complete
-          setTimeout(() => setShowTerminal(true), 1000);
           return prev;
         }
       });
@@ -242,7 +237,7 @@ export default function Home() {
             {/* ZenShell - Linux Shell */}
             <div className="project-card">
               <div className="project-image">
-                <img src="" alt="" />
+                {/* Placeholder image */}
                 <div className="project-overlay">
                   <Link href="/projects" className="btn btn-outline">
                     View Details

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 /**
  * Root Layout Component
  * 

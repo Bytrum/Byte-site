@@ -1,6 +1,6 @@
 'use client';
 
-import {Avatar, AvatarGroup, AvatarIcon} from "@heroui/avatar";
+import {Avatar} from "@heroui/avatar";
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
