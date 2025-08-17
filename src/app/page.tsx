@@ -209,7 +209,7 @@ export default function Home() {
               <div className="project-image">
                 <img src="https://i.ibb.co/8g1bXrvy/GSH.png" alt="GhostFreakOS" className="w-fit rounded-lg" />
                 <div className="project-overlay">
-                  <Link href="https://i.ibb.co/8g1bXrvy/GSH.png" className="btn btn-outline">
+                  <Link href="" className="btn btn-outline">
                     View Details
                   </Link>
                 </div>
