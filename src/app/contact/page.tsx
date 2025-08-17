@@ -79,7 +79,8 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || 'YOUR_DISCORD_WEBHOOK_URL_HERE';
+      // Discord webhook URL - replace with your actual webhook URL
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL;
       
       // Create beautiful embed message
       const embed = {
