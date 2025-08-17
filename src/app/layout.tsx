@@ -7,6 +7,7 @@
  * - Font configuration (Inter font family)
  * - External resource loading (Font Awesome icons)
  * - HTML structure and body wrapper
+ * - Smooth cursor for enhanced UX
  * 
  * This layout wraps all pages in the application.
  */
@@ -14,6 +15,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import ChatBot from "@/components/ChatBot";
 
 // Configure Inter font with Latin subset
 const inter = Inter({ subsets: ["latin"] });
@@ -50,7 +53,11 @@ export default function RootLayout({
         {/* Load Font Awesome icons */}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <SmoothCursor />
+        <ChatBot />
+      </body>
     </html>
   );
 }

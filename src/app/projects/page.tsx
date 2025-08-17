@@ -14,48 +14,18 @@ const projects = [
     tags: ['Arch Linux', 'Custom', 'Security'],
     year: '2025',
     duration: '1 month',
-    image: '/api/placeholder/400/300'
+    image: 'https://i.ibb.co/8g1bXrvy/GSH.png'
   },
   {
     id: 2,
-    title: 'Mobile Banking App',
-    description: 'Secure and user-friendly mobile banking application with biometric authentication and real-time transaction monitoring.',
-    category: 'Dev',
-    tags: ['React Native', 'Firebase', 'TypeScript'],
-    year: '2024',
-    duration: '4 months',
-    image: '/api/placeholder/400/300'
-  },
-  {
-    id: 3,
-    title: 'AI-Powered Dashboard',
-    description: 'Intelligent dashboard with machine learning capabilities for data visualization and predictive analytics.',
-    category: 'ai',
-    tags: ['Vue.js', 'Python', 'TensorFlow'],
-    year: '2025',
-    duration: '6 months',
-    image: '/api/placeholder/400/300'
-  },
-  {
-    id: 4,
     title: 'ZenShell',
-    description: 'A Linux Shell Built in C++ and configurd by lua',
+    description: 'A Linux Shell Built in C++ and configured by Lua',
     category: 'dev',
     tags: ['C++', 'Shell', 'Lua'],
     year: '2025',
     duration: '1 month',
-    image: '/api/placeholder/400/300'
-  },
-  {
-    id: 5,
-    title: 'Real-time Chat Application',
-    description: 'Scalable chat application with real-time messaging, file sharing, and video calling capabilities.',
-    category: 'dev',
-    tags: ['Socket.io', 'Express', 'PostgreSQL'],
-    year: '2023',
-    duration: '5 months',
-    image: '/api/placeholder/400/300'
-  },
+    image: '#'
+  }
 ];
 
 const categories = [
@@ -119,10 +89,13 @@ export default function Projects() {
             {filteredProjects.map((project) => (
               <div key={project.id} className="project-card">
                 <div className="project-image">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   <div className="project-overlay">
-                    <Link href={`/projects/${project.id}`} className="btn btn-outline">
-                      View Details
-                    </Link>
+                    <span className="text-white font-semibold">Coming Soon</span>
                   </div>
                 </div>
                 <div className="project-info">

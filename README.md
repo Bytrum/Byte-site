@@ -14,14 +14,14 @@ Byte-site is a modern web application built for the Byte Code team, designed to 
 - **TypeScript** (Typed JavaScript)
 - **Magic UI** (UI components and design system)
 - **Heroui** (Hero section/UI library)
-- **Supabase** (Cloud database and authentication)
+- **Discord Webhooks** (Contact form notifications)
 
 ## Features
 
 - Fast and scalable Next.js architecture
 - Type-safe development with TypeScript
 - Sleek, responsive interface using Magic UI and Heroui
-- Authentication and data management powered by Supabase
+- Contact form with Discord webhook integration
 - Easy deployment and maintenance
 
 
@@ -30,7 +30,7 @@ Byte-site is a modern web application built for the Byte Code team, designed to 
 
 - `/pages` — Next.js route pages
 - `/components` — Reusable UI components (Magic UI, Heroui)
-- `/lib` — Utility functions and Supabase client
+- `/lib` — Utility functions and helpers
 - `/styles` — Custom styles
 
 

@@ -14,7 +14,6 @@
  */
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {Avatar} from "@heroui/avatar";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import {
   AnimatedSpan,
   Terminal,
@@ -215,7 +214,7 @@ export default function Home() {
               <div className="project-image">
                 {/* Placeholder image */}
                 <div className="project-overlay">
-                  <Link href="/projects" className="btn btn-outline">
+                  <Link href="https://i.ibb.co/8g1bXrvy/GSH.png" className="btn btn-outline">
                     View Details
                   </Link>
                 </div>
@@ -242,7 +241,6 @@ export default function Home() {
             {/* ZenShell - Linux Shell */}
             <div className="project-card">
               <div className="project-image">
-                <img src="" alt="" />
                 <div className="project-overlay">
                   <Link href="/projects" className="btn btn-outline">
                     View Details
@@ -266,36 +264,7 @@ export default function Home() {
                   1 month
                 </div>
               </div>
-            </div>
-
-            {/* AI-Powered Dashboard */}
-            <div className="project-card">
-              <div className="project-image">
-                {/* Placeholder image */}
-                <div className="project-overlay">
-                  <Link href="/projects" className="btn btn-outline">
-                    View Details
-                  </Link>
-                </div>
-              </div>
-              <div className="project-info">
-                <div className="project-meta">
-                  <span className="project-category">AI & ML</span>
-                  <span className="project-year">2025</span>
-                </div>
-                <h3>AI-Powered Dashboard</h3>
-                <p>Intelligent dashboard with machine learning capabilities for data visualization and predictive analytics.</p>
-                <div className="project-tags">
-                  <span className="tag">Vue.js</span>
-                  <span className="tag">Python</span>
-                  <span className="tag">TensorFlow</span>
-                </div>
-                <div className="project-duration">
-                  <i className="fas fa-clock"></i>
-                  6 months
-                </div>
-              </div>
-            </div>
+            </div>  
           </div>
         </div>
       </section>
@@ -354,7 +323,6 @@ export default function Home() {
       </section>
       </BlurFade>
       <Footer />
-      <SmoothCursor />
     </main>
   );
 }
