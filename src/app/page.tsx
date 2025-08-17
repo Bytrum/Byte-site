@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 /**
@@ -206,7 +207,7 @@ export default function Home() {
             {/* GhostFreakOS - Custom Linux Distribution */}
             <div className="project-card">
               <div className="project-image">
-                {/* Placeholder image */}
+                <img src="https://i.ibb.co/8g1bXrvy/GSH.png" alt="GhostFreakOS" className="w-fit rounded-lg" />
                 <div className="project-overlay">
                   <Link href="https://i.ibb.co/8g1bXrvy/GSH.png" className="btn btn-outline">
                     View Details
