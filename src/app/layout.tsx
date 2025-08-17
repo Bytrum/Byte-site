@@ -13,10 +13,11 @@
  * This layout wraps all pages in the application.
  */
 
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
+
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import ChatBot from "@/components/ChatBot";
 
 // Configure Inter font with Latin subset
@@ -55,8 +56,8 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
       </head>
       <body className={inter.className}>
-        {children}
         <SmoothCursor />
+        {children}
         <ChatBot />
       </body>
     </html>
