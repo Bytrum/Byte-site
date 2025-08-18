@@ -8,12 +8,9 @@
  * - Font configuration (Inter font family)
  * - External resource loading (Font Awesome icons)
  * - HTML structure and body wrapper
- * - Smooth cursor for enhanced UX
  * 
  * This layout wraps all pages in the application.
  */
-
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
@@ -56,7 +53,6 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
       </head>
       <body className={inter.className}>
-        <SmoothCursor />
         {children}
         <ChatBot />
       </body>

@@ -48,7 +48,7 @@ export default function Navigation() {
         </div>
 
         {/* Desktop Navigation Menu */}
-        <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`}>
+        <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
           <li className="nav-item">
             <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
               Home

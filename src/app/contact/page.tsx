@@ -6,9 +6,10 @@
  * This component provides the contact page for the Byte website.
  * Features include:
  * - Contact form with validation
+ * - Project request form with detailed fields
  * - FAQ accordion system
  * - Contact information display
- * - Discord webhook form submission
+ * - Discord webhook form submission with different embeds
  * 
  * The component uses React hooks for state management and form handling.
  */
@@ -46,8 +47,18 @@ const faqItems = [
 ];
 
 export default function Contact() {
-  // Form data state management
-  const [formData, setFormData] = useState({
+  // Form type state
+  const [formType, setFormType] = useState<'contact' | 'project'>('contact');
+
+  // Contact form data state
+  const [contactData, setContactData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  // Project form data state
+  const [projectData, setProjectData] = useState({
     name: '',
     email: '',
     company: '',
@@ -63,30 +74,38 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  // Handle form input changes
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  // Handle contact form input changes
+  const handleContactInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setContactData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  // Handle form submission with Discord webhook
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Handle project form input changes
+  const handleProjectInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setProjectData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // Handle contact form submission
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      // Discord webhook URL - replace with your actual webhook URL
       const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || '';
       
-      // Create beautiful embed message
+      // Contact form embed
       const embed = {
-        title: "🚀 New Project Request Received",
-        description: "A new project submission has been received and requires your attention.",
-        color: 0xffffff, // White color
+        title: "📧 New Contact Message Received",
+        description: "A new contact message has been received from the website.",
+        color: 0x00ff00, // Green color for contact
         author: {
           name: "Byte Development Team",
           icon_url: "https://github.com/bytrum.png"
@@ -96,29 +115,25 @@ export default function Contact() {
         },
         fields: [
           {
-            name: "👤 **CLIENT INFORMATION**",
-            value: `**Name:** ${formData.name || "Not provided"}\n\n**Email:** ${formData.email || "Not provided"}`,
+            name: "👤 **CONTACT INFORMATION**",
+            value: `**Name:** ${contactData.name || "Not provided"}\n\n**Email:** ${contactData.email || "Not provided"}`,
             inline: false
           },
           {
-            name: "💼 **PROJECT DETAILS**",
-            value: `**Company:** ${formData.company || "Not provided"}\n\n**Budget:** ${formData.budget ? getBudgetDisplay(formData.budget) : "Not specified"}\n\n**Timeline:** ${formData.timeline ? getTimelineDisplay(formData.timeline) : "Not specified"}`,
-            inline: false
-          },
-          {
-            name: "📝 **PROJECT DESCRIPTION**",
-            value: formData.message || "No message provided",
+            name: "💬 **MESSAGE**",
+            value: contactData.message || "No message provided",
             inline: false
           }
         ],
         timestamp: new Date().toISOString(),
         footer: {
-          text: "Byte Bot • Project Submissions",
+          text: "Byte Bot • Contact Messages",
           icon_url: "https://github.com/bytrum.png"
         }
       };
 
       const payload = {
+        content: "<@&1382304416111267840>",
         embeds: [embed]
       };
 
@@ -132,8 +147,83 @@ export default function Contact() {
 
       if (response.ok) {
         setSubmitStatus('success');
-        // Reset form
-        setFormData({
+        setContactData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Handle project form submission
+  const handleProjectSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || '';
+      
+      // Project request embed
+      const embed = {
+        title: "🚀 New Project Request Received",
+        description: "A new project submission has been received and requires your attention.",
+        color: 0xffffff, // White color for project requests
+        author: {
+          name: "Byte Development Team",
+          icon_url: "https://github.com/bytrum.png"
+        },
+        thumbnail: {
+          url: "https://github.com/bytrum.png"
+        },
+        fields: [
+          {
+            name: "👤 **CLIENT INFORMATION**",
+            value: `**Name:** ${projectData.name || "Not provided"}\n\n**Email:** ${projectData.email || "Not provided"}`,
+            inline: false
+          },
+          {
+            name: "💼 **PROJECT DETAILS**",
+            value: `**Company:** ${projectData.company || "Not provided"}\n\n**Budget:** ${projectData.budget ? getBudgetDisplay(projectData.budget) : "Not specified"}\n\n**Timeline:** ${projectData.timeline ? getTimelineDisplay(projectData.timeline) : "Not specified"}`,
+            inline: false
+          },
+          {
+            name: "📝 **PROJECT DESCRIPTION**",
+            value: projectData.message || "No message provided",
+            inline: false
+          }
+        ],
+        timestamp: new Date().toISOString(),
+        footer: {
+          text: "Byte Bot • Project Submissions",
+          icon_url: "https://github.com/bytrum.png"
+        }
+      };
+
+      const payload = {
+        content: "<@&1382304416111267840>",
+        embeds: [embed]
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setProjectData({
           name: '',
           email: '',
           company: '',
@@ -145,7 +235,7 @@ export default function Contact() {
         throw new Error('Failed to send message');
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error('Error submitting project form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -230,12 +320,39 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Form Type Selector */}
+      <section className="form-selector-section">
+        <div className="container">
+          <div className="form-selector">
+            <h2 className="section-subtitle">How can we help you?</h2>
+            <div className="form-type-buttons">
+              <button
+                className={`form-type-btn ${formType === 'contact' ? 'active' : ''}`}
+                onClick={() => setFormType('contact')}
+              >
+                <i className="fas fa-envelope"></i>
+                General Contact
+              </button>
+              <button
+                className={`form-type-btn ${formType === 'project' ? 'active' : ''}`}
+                onClick={() => setFormType('project')}
+              >
+                <i className="fas fa-rocket"></i>
+                Request a Project
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contact Form */}
       <section className="contact-form-section">
         <div className="container">
           <div className="contact-form-container">
             <div className="form-section">
-              <h2 className="section-subtitle">Send Us a Message</h2>
+              <h2 className="section-subtitle">
+                {formType === 'contact' ? 'Send Us a Message' : 'Tell Us About Your Project'}
+              </h2>
               
               {/* Success/Error Messages */}
               {submitStatus === 'success' && (
@@ -252,111 +369,176 @@ export default function Contact() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="contact-form">
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="name">Name *</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      disabled={isSubmitting}
-                    />
+              {/* General Contact Form */}
+              {formType === 'contact' && (
+                <form onSubmit={handleContactSubmit} className="contact-form">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="contact-name">Name *</label>
+                      <input
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        value={contactData.name}
+                        onChange={handleContactInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="contact-email">Email *</label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        value={contactData.email}
+                        onChange={handleContactInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="email">Email *</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      disabled={isSubmitting}
-                    />
-                  </div>
-                </div>
 
-                <div className="form-row">
                   <div className="form-group">
-                    <label htmlFor="company">Company</label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
-                      onChange={handleInputChange}
+                    <label htmlFor="contact-message">Message *</label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      value={contactData.message}
+                      onChange={handleContactInputChange}
+                      rows={6}
+                      required
                       disabled={isSubmitting}
-                    />
+                    ></textarea>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="budget">Budget Range</label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleInputChange}
-                      disabled={isSubmitting}
-                    >
-                      <option value="">Select Budget</option>
-                      <option value="under-10k">Under $10,000</option>
-                      <option value="10k-25k">$10,000 - $25,000</option>
-                      <option value="25k-50k">$25,000 - $50,000</option>
-                      <option value="50k-100k">$50,000 - $100,000</option>
-                      <option value="over-100k">Over $100,000</option>
-                    </select>
-                  </div>
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="timeline">Timeline</label>
-                  <select
-                    id="timeline"
-                    name="timeline"
-                    value={formData.timeline}
-                    onChange={handleInputChange}
+
+                  <button 
+                    type="submit" 
+                    className={`btn btn-primary ${isSubmitting ? 'loading' : ''}`}
                     disabled={isSubmitting}
                   >
-                    <option value="">Select Timeline</option>
-                    <option value="asap">ASAP</option>
-                    <option value="1-2-months">1-2 months</option>
-                    <option value="3-6-months">3-6 months</option>
-                    <option value="6-months-plus">6+ months</option>
-                  </select>
-                </div>
+                    <span className="btn-glow"></span>
+                    {isSubmitting ? (
+                      <>
+                        <i className="fas fa-spinner fa-spin"></i>
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </button>
+                </form>
+              )}
 
-                <div className="form-group">
-                  <label htmlFor="message">Message *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={6}
-                    required
+              {/* Project Request Form */}
+              {formType === 'project' && (
+                <form onSubmit={handleProjectSubmit} className="contact-form">
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="project-name">Name *</label>
+                      <input
+                        type="text"
+                        id="project-name"
+                        name="name"
+                        value={projectData.name}
+                        onChange={handleProjectInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="project-email">Email *</label>
+                      <input
+                        type="email"
+                        id="project-email"
+                        name="email"
+                        value={projectData.email}
+                        onChange={handleProjectInputChange}
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="company">Company</label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={projectData.company}
+                        onChange={handleProjectInputChange}
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="budget">Budget Range</label>
+                      <select
+                        id="budget"
+                        name="budget"
+                        value={projectData.budget}
+                        onChange={handleProjectInputChange}
+                        disabled={isSubmitting}
+                      >
+                        <option value="">Select Budget</option>
+                        <option value="under-10k">Under $10,000</option>
+                        <option value="10k-25k">$10,000 - $25,000</option>
+                        <option value="25k-50k">$25,000 - $50,000</option>
+                        <option value="50k-100k">$50,000 - $100,000</option>
+                        <option value="over-100k">Over $100,000</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="timeline">Timeline</label>
+                    <select
+                      id="timeline"
+                      name="timeline"
+                      value={projectData.timeline}
+                      onChange={handleProjectInputChange}
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Select Timeline</option>
+                      <option value="asap">ASAP</option>
+                      <option value="1-2-months">1-2 months</option>
+                      <option value="3-6-months">3-6 months</option>
+                      <option value="6-months-plus">6+ months</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="project-message">Project Description *</label>
+                    <textarea
+                      id="project-message"
+                      name="message"
+                      value={projectData.message}
+                      onChange={handleProjectInputChange}
+                      rows={6}
+                      required
+                      disabled={isSubmitting}
+                      placeholder="Tell us about your project, goals, and requirements..."
+                    ></textarea>
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    className={`btn btn-primary ${isSubmitting ? 'loading' : ''}`}
                     disabled={isSubmitting}
-                  ></textarea>
-                </div>
-
-                <button 
-                  type="submit" 
-                  className={`btn btn-primary ${isSubmitting ? 'loading' : ''}`}
-                  disabled={isSubmitting}
-                >
-                  <span className="btn-glow"></span>
-                  {isSubmitting ? (
-                    <>
-                      <i className="fas fa-spinner fa-spin"></i>
-                      Sending...
-                    </>
-                  ) : (
-                    'Send Message'
-                  )}
-                </button>
-              </form>
+                  >
+                    <span className="btn-glow"></span>
+                    {isSubmitting ? (
+                      <>
+                        <i className="fas fa-spinner fa-spin"></i>
+                        Sending Project Request...
+                      </>
+                    ) : (
+                      'Send Project Request'
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

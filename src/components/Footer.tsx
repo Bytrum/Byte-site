@@ -29,10 +29,7 @@ export default function Footer() {
             <p>Digital innovation at its finest. We create solutions that matter.</p>
             {/* Social Media Links */}
             <div className="social-links">
-              <a href="#"><i className="fab fa-twitter"></i></a>
-              <a href="#"><i className="fab fa-linkedin"></i></a>
-              <a href="#"><i className="fab fa-github"></i></a>
-              <a href="#"><i className="fab fa-instagram"></i></a>
+              <a href="https://github.com/Bytrum"><i className="fab fa-github"></i></a>
             </div>
           </div>
 
@@ -62,15 +59,14 @@ export default function Footer() {
           {/* Contact Information Section */}
           <div className="footer-section">
             <h4>Contact</h4>
-            <p>hello@byte.com</p>
-            <p>+1 (555) 123-4567</p>
+            <p>hello@byte-team.website</p>
             <p>Egypt</p>
           </div>
         </div>
 
         {/* Copyright Notice */}
         <div className="footer-bottom">
-          <p>&copy; 2025 <span className="byte-glow">Byte</span>. All rights reserved.</p>
+          <p>&copy; 2026 <span className="byte-glow">Byte-Team</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>

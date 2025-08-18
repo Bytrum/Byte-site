@@ -8,7 +8,7 @@ const teamMembers = {
   Owner: [
     {
       name: 'Bad Request',
-      role: 'CEO & Founder',
+      role: 'CEO & Founder & Cybersecurity Expert',
       bio: 'Visionary leader with 10+ years of experience in digital innovation and technology strategy.',
       avatar: 'https://github.com/om7iux.png',
       social: {
@@ -23,7 +23,7 @@ const teamMembers = {
   Managers: [
     {
       name: 'Asaad Zein',
-      role: 'Software Engineer and Manager',
+      role: 'Supervisor & Ai Developer',
       bio: 'Experienced software engineer passionate about clean code and user experience.',
       avatar: 'https://github.com/asaadzx.png',
       social: {
@@ -36,7 +36,7 @@ const teamMembers = {
     },
     {
       name: 'Ahmed Shafik',
-      role: 'Software Engineer and Manager',
+      role: 'Supervisor & Ai Developer & Cybersecurity Expert',
       bio: 'Skilled developer with a passion for intuitive and beautiful user interfaces.',
       avatar: 'https://github.com/Lazysniperz.png',
       social: {
@@ -45,9 +45,7 @@ const teamMembers = {
         instagram: 'https://www.instagram.com/ssniperx/',
         portfolio: 'https://ghosty.is-a.dev'
       },
-    }
-  ],
-  Developers: [
+    },
     {
       name: 'Basmala Mahmoud',
       role: 'Social Media Manager',
@@ -61,6 +59,8 @@ const teamMembers = {
         portfolio: ''
       },
     }
+  ],
+  Developers: [
   ]
 };
 

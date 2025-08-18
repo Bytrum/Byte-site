@@ -391,6 +391,7 @@ body {
   background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
   position: relative;
   overflow: hidden;
+  padding-top: 4.5rem; /* offset fixed navbar on small screens */
 }
 
 .hero-container {
@@ -520,6 +521,12 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Ensure images inside project cards scale down on small screens */
+.project-image img {
+  max-width: 100%;
+  height: auto;
 }
 
 .project-overlay {
@@ -855,6 +862,60 @@ body {
   color: var(--light-gray);
 }
 
+/* Form Selector Section */
+.form-selector-section {
+  padding: 2rem 0;
+  background: var(--primary-black);
+}
+
+.form-selector {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.form-type-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.form-type-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--medium-gray);
+  border: 2px solid var(--medium-gray);
+  border-radius: 12px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  min-width: 180px;
+  justify-content: center;
+}
+
+.form-type-btn:hover {
+  background: var(--silver);
+  border-color: var(--silver);
+  transform: translateY(-2px);
+}
+
+.form-type-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  box-shadow: var(--glow-shadow);
+}
+
+.form-type-btn i {
+  font-size: 1.2rem;
+}
+
 /* Contact Form */
 .contact-form-section {
   padding: 4rem 0;
@@ -1151,6 +1212,19 @@ body {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  /* Avoid overflow from grids and terminal on mobile */
+  .hero,
+  .hero-container,
+  .services,
+  .projects-section,
+  .team-preview,
+  .footer,
+  .container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 }
 
