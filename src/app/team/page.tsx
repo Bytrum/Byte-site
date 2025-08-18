@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 const teamMembers = {
   Owner: [
     {
-      name: 'Bad Request',
+      name: 'Omar Sameh',
       role: 'CEO & Founder & Cybersecurity Expert',
       bio: 'Visionary leader with 10+ years of experience in digital innovation and technology strategy.',
       avatar: 'https://github.com/om7iux.png',
@@ -60,7 +60,21 @@ const teamMembers = {
       },
     }
   ],
+  // Added This TO Don't Get TS Interface error 
   Developers: [
+    {
+      name: '',
+      role: '',
+      bio: '',
+      avatar: 'aa',
+      social: {
+        github: '',
+        linkedin: '',
+        discord: '',
+        instagram: '',
+        portfolio: ''
+      },
+    }
   ]
 };
 
@@ -210,7 +224,7 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Creative Team */}
+      {/* Dev Team */}
       <section className="team-section">
         <div className="container">
           <h2 className="section-subtitle">Dev Team</h2>

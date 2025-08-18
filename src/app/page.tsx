@@ -90,7 +90,7 @@ export default function Home() {
 
           {/* Interactive Terminal - Byte Team Project Setup */}
           <BlurFade delay={0.02} inView>
-              <div className="w-full max-w-full overflow-auto flex items-center justify-center">
+              <div className="hidden lg:block">
                 <Terminal>
                   <TypingAnimation className="text-blue-400 font-bold">&gt; byte-team --init --project &quot;amazing-collaboration&quot;</TypingAnimation>
                   

@@ -1,4 +1,4 @@
-
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -1570,11 +1570,6 @@ body {
   transform: none;
 }
 
-/* ===== TERMINAL COLORS ===== */
-:root {
-  --terminal-green: #00ff00;
-  --terminal-bg: #1a1a1a;
-}
 
 /* ===== ABOUT PAGE STYLES ===== */
 .mission-section {
