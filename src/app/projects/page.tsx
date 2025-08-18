@@ -14,6 +14,7 @@ const projects = [
     tags: ['Arch Linux', 'Custom', 'Security'],
     year: '2025',
     duration: '1 month',
+    link: 'https://ghostfreak.is-local.org',
     image: 'https://i.ibb.co/8g1bXrvy/GSH.png'
   },
   {
@@ -24,6 +25,7 @@ const projects = [
     tags: ['C++', 'Shell', 'Lua'],
     year: '2025',
     duration: '1 month',
+    link: 'https://github.com/asaadzx/zenshell',
     image: '#'
   }
 ];
@@ -95,7 +97,9 @@ export default function Projects() {
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <div className="project-overlay">
-                    <span className="text-white font-semibold">Coming Soon</span>
+                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                      <i className="fas fa-link text-6xl"></i>
+                    </a>
                   </div>
                 </div>
                 <div className="project-info">

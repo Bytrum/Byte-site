@@ -127,7 +127,7 @@ export default function Team() {
                     radius="full" 
                     src={member.avatar}
                     size="sm"
-                    className="w-15 h-15 mx-auto"
+                    className="w-60 h-60 mx-auto"
                     style={{ borderRadius: '50%' }}
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function Team() {
                     radius="full" 
                     src={member.avatar}
                     size="sm"
-                    className="w-15 h-15 mx-auto"
+                    className="w-60 h-60 mx-auto"
                     style={{ borderRadius: '50%' }}
                   />
                 </div>
@@ -237,7 +237,7 @@ export default function Team() {
                     radius="full" 
                     src={member.avatar}
                     size="sm"
-                    className="w-15 h-15 mx-auto"
+                    className="w-60 h-60 mx-auto"
                     style={{ borderRadius: '50%' }}
                   />
                 </div>
