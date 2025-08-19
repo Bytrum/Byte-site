@@ -13,7 +13,7 @@
  * The component uses React hooks for state management and animations.
  */
 import { BlurFade } from "@/components/magicui/blur-fade";
-import {Avatar} from "@heroui/avatar";
+import { Avatar,  AvatarImage } from "@/components/ui/avatar"
 import {
   AnimatedSpan,
   Terminal,
@@ -31,7 +31,7 @@ export default function Home() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0); // Controls word-by-word animation
 
   // Welcome text that appears word by word
-  const welcomeWords = ['Welcome', 'to', 'Byte'];
+  const welcomeWords = ['Welcome', 'to', 'byte'];
 
   // Effect for word-by-word welcome text animation
   useEffect(() => {
@@ -60,19 +60,19 @@ export default function Home() {
           <BlurFade delay={0.01} inView>
           <div className="hero-content">
             {/* Animated welcome title that appears word by word */}
-            <h1 className="hero-title">
+            <h2 className="hero-title">
               {welcomeWords.map((word, index) => (
                 <span
                   key={index}
                   className={`${index <= currentWordIndex ? 'word-visible' : 'word-hidden'} ${
-                    word === 'Byte' ? 'glow-text' : ''
+                    word === 'byte' ? 'glow-text' : ''
                   }`}
                 >
                   {word}
                   {index < welcomeWords.length - 1 && ' '}
                 </span>
               ))}
-            </h1>
+            </h2>
             <p className="hero-subtitle">
               We are a team of digital innovators, creators, and problem solvers
             </p>
@@ -165,45 +165,29 @@ export default function Home() {
         <div className="container">
           <h2 className="section-title">What We Do</h2>
           <div className="services-grid">
-            {/* Cybersecurity Services Card */}
-            <div className="service-card">
-              <div className="service-icon">
-                <i className="fas fa-shield-alt"></i>
-              </div>
-              <h3>Cybersecurity Services</h3>
-              <p>Comprehensive security solutions including penetration testing, vulnerability assessments, and security consulting to protect your digital assets.</p>
-            </div>
-            {/* Technical Documentation and Blogs Card */}
-            <div className="service-card">
-              <div className="service-icon">
-                <i className="fas fa-blog"></i>
-              </div>
-              <h3>Blogs and Docs</h3>
-              <p>Technical documentation, tutorials, and educational content to help developers and teams stay updated with the latest technologies.</p>
-            </div>
             {/* Custom Linux Distributions and Applications Card */}
             <div className="service-card">
               <div className="service-icon">
                 <i className="fab fa-linux"></i>
               </div>
-              <h3>Linux Distro and Apps</h3>
-              <p>Custom Linux distributions and specialized applications built for specific use cases and optimized performance.</p>
             </div>
             {/* Developer Tools and Utilities Card */}
             <div className="service-card">
               <div className="service-icon">
                 <i className="fas fa-tools"></i>
               </div>
-              <h3>Tools To Help Developers</h3>
-              <p>Development utilities, automation scripts, and productivity tools designed to streamline the development workflow.</p>
+            <h4 className="text-lg font-bold">
+              {/* Add Title  */}
+            </h4>
+            <p className="text-sm">
+              {/* Add discription */}
+            </p>
             </div>
             {/* Custom AI Models and Machine Learning Card */}
             <div className="service-card">
               <div className="service-icon">
                 <i className="fas fa-brain"></i>
               </div>
-              <h3>AI Models</h3>
-              <p>Custom artificial intelligence models and machine learning solutions tailored to solve specific business problems.</p>
             </div>
           </div>
         </div>
@@ -280,24 +264,28 @@ export default function Home() {
 
       {/* Team Preview */}
       <BlurFade delay={0.05} inView>
-      <section className="team-preview">
-        <div className="container">
+      <section className="">
+        <div className="">
           <h2 className="section-title">Meet Our Team</h2>
           <div className="team-grid">
 
             {/* Omar Sameh */}
             <div className="team-member">
               <div className="member-avatar">
-                  <Avatar src="https://github.com/om7iux.png"/>
+                  <Avatar className="size-40">
+                  <AvatarImage src="https://github.com/om7iux.png" />
+                  </Avatar>
               </div>
-              <h3>Omar Sameh</h3>
-              <h3>Founder </h3>
+              <h4>Omar Sameh</h4>
+              <h3>Ceo & Founder </h3>
             </div>  
 
             {/* Asaad Zein */}
             <div className="team-member">
               <div className="member-avatar">
-                  <Avatar src="https://github.com/asaadzx.png"/>
+                  <Avatar className="size-40">
+                  <AvatarImage src="https://github.com/asaadzx.png" />
+                  </Avatar>
               </div>
               <h3>Asaadzx</h3>
               <h3>Software Engineer and Manager</h3>
@@ -306,7 +294,9 @@ export default function Home() {
             {/* Ahmed Shafik */}
             <div className="team-member">
               <div className="member-avatar">
-                  <Avatar src="https://github.com/Lazysniperz.png"/>
+                  <Avatar className="size-40">
+                  <AvatarImage src="https://github.com/Lazysniperz.png" />
+                  </Avatar>
               </div>
               <h3>Ahmed Shafik</h3>
               <h3>Software Engineer and Manager</h3>
@@ -315,13 +305,15 @@ export default function Home() {
             {/* Basmala mahmoad */}
             <div className="team-member">
               <div className="member-avatar">
-                  <Avatar src="https://github.com/basmalamahmoud32010-ai.png"/>
+                  <Avatar className="size-40">
+                  <AvatarImage src="https://github.com/basmalamahmoud32010-ai.png" />
+                  </Avatar>
               </div>
               <h3>Basmala Mahmoad</h3>
               <h3>Social Media Manager</h3>
             </div>
           </div>
-          <div className="text-center">
+          <div className="text-center pt-32">
             <Link href="/team" className="btn btn-primary">
               <span className="btn-glow"></span>
               View Full Team

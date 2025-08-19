@@ -1,6 +1,6 @@
 'use client';
 
-import {Avatar} from "@heroui/avatar";
+import { Avatar,  AvatarImage } from "@/components/ui/avatar"
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
@@ -21,6 +21,22 @@ const teamMembers = {
     }
   ],
   Managers: [
+    {
+      name: 'Basmala Mahmoud',
+      role: 'Social Media Manager',
+      bio: 'Creative social media expert with a talent for engaging content and community building.',
+      avatar: 'https://github.com/basmalamahmoud32010-ai.png',
+      social: {
+        github: 'https://github.com/basmalamahmoud32010-a',
+        linkedin: '',
+        discord: '',
+        instagram: '',
+        portfolio: ''
+      },
+    }
+  ],
+  // Added This TO Don't Get TS Interface error 
+  Developers: [
     {
       name: 'Asaad Zein',
       role: 'Supervisor & Ai Developer',
@@ -46,35 +62,6 @@ const teamMembers = {
         portfolio: 'https://ghosty.is-a.dev'
       },
     },
-    {
-      name: 'Basmala Mahmoud',
-      role: 'Social Media Manager',
-      bio: 'Creative social media expert with a talent for engaging content and community building.',
-      avatar: 'https://github.com/basmalamahmoud32010-ai.png',
-      social: {
-        github: 'https://github.com/basmalamahmoud32010-a',
-        linkedin: '',
-        discord: '',
-        instagram: '',
-        portfolio: ''
-      },
-    }
-  ],
-  // Added This TO Don't Get TS Interface error 
-  Developers: [
-    {
-      name: '',
-      role: '',
-      bio: '',
-      avatar: 'aa',
-      social: {
-        github: '',
-        linkedin: '',
-        discord: '',
-        instagram: '',
-        portfolio: ''
-      },
-    }
   ]
 };
 
@@ -122,14 +109,9 @@ export default function Team() {
             {teamMembers.Owner.map((member, index) => (
               <div key={index} className="team-member-card">
                 <div className="member-avatar">
-                  <Avatar 
-                    isBordered 
-                    radius="full" 
-                    src={member.avatar}
-                    size="sm"
-                    className="w-60 h-60 mx-auto"
-                    style={{ borderRadius: '50%' }}
-                  />
+                  <Avatar className="size-40">
+                  <AvatarImage src={member.avatar} />
+                  </Avatar>
                 </div>
                 <div className="member-info">
                   <h3>{member.name}</h3>
@@ -169,60 +151,6 @@ export default function Team() {
         </div>
       </section>
 
-      {/* Engineering Team */}
-      <section className="team-section">
-        <div className="container">
-          <h2 className="section-subtitle">Team Managers</h2>
-          <div className="team-grid">
-            {teamMembers.Managers.map((member, index) => (
-              <div key={index} className="team-member-card">
-                <div className="member-avatar">
-                  <Avatar 
-                    isBordered 
-                    radius="full" 
-                    src={member.avatar}
-                    size="sm"
-                    className="w-60 h-60 mx-auto"
-                    style={{ borderRadius: '50%' }}
-                  />
-                </div>
-                <div className="member-info">
-                  <h3>{member.name}</h3>
-                  <p className="member-role">{member.role}</p>
-                  <p className="member-bio">{member.bio}</p>
-                  <div className="member-social">
-                    {member.social.linkedin && (
-                      <a href={member.social.linkedin} className="social-link">
-                        <i className="fab fa-linkedin"></i>
-                      </a>
-                    )}
-                    {member.social.github && (
-                      <a href={member.social.github} className="social-link">
-                        <i className="fab fa-github"></i>
-                      </a>
-                    )}
-                    {member.social.discord && (
-                      <a href={member.social.discord} className="social-link">
-                        <i className="fab fa-discord"></i>
-                      </a>
-                    )}
-                    {member.social.instagram && (
-                      <a href={member.social.instagram} className="social-link">
-                        <i className="fab fa-instagram"></i>
-                      </a>
-                    )}
-                    {member.social.portfolio && (
-                      <a href={member.social.portfolio} className="social-link">
-                        <i className="fas fa-globe"></i>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Dev Team */}
       <section className="team-section">
@@ -232,14 +160,9 @@ export default function Team() {
             {teamMembers.Developers.map((member, index) => (
               <div key={index} className="team-member-card">
                 <div className="member-avatar">
-                  <Avatar 
-                    isBordered 
-                    radius="full" 
-                    src={member.avatar}
-                    size="sm"
-                    className="w-60 h-60 mx-auto"
-                    style={{ borderRadius: '50%' }}
-                  />
+                  <Avatar className="size-40">
+                  <AvatarImage src={member.avatar} />
+                  </Avatar>
                 </div>
                 <div className="member-info">
                   <h3>{member.name}</h3>
@@ -278,7 +201,55 @@ export default function Team() {
           </div>
         </div>
       </section>
-
+      {/* Manegers Team */}
+      <section className="team-section">
+        <div className="container">
+          <h2 className="section-subtitle">Team Managers</h2>
+          <div className="team-grid">
+            {teamMembers.Managers.map((member, index) => (
+              <div key={index} className="team-member-card">
+                <div className="member-avatar">
+                  <Avatar className="size-40">
+                  <AvatarImage src={member.avatar} />
+                  </Avatar>
+                </div>
+                <div className="member-info">
+                  <h3>{member.name}</h3>
+                  <p className="member-role">{member.role}</p>
+                  <p className="member-bio">{member.bio}</p>
+                  <div className="member-social">
+                    {member.social.linkedin && (
+                      <a href={member.social.linkedin} className="social-link">
+                        <i className="fab fa-linkedin"></i>
+                      </a>
+                    )}
+                    {member.social.github && (
+                      <a href={member.social.github} className="social-link">
+                        <i className="fab fa-github"></i>
+                      </a>
+                    )}
+                    {member.social.discord && (
+                      <a href={member.social.discord} className="social-link">
+                        <i className="fab fa-discord"></i>
+                      </a>
+                    )}
+                    {member.social.instagram && (
+                      <a href={member.social.instagram} className="social-link">
+                        <i className="fab fa-instagram"></i>
+                      </a>
+                    )}
+                    {member.social.portfolio && (
+                      <a href={member.social.portfolio} className="social-link">
+                        <i className="fas fa-globe"></i>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <Footer />
     </main>
   );
