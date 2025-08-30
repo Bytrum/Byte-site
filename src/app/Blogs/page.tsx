@@ -14,7 +14,7 @@ export default function BlogsPage() {
         <header className="mb-10 text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-4 glow-text animate-fade-in">Blogs</h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-6 animate-fade-in">
-            Welcome to my blog collection! Here you&apos;ll find posts made by me, <span className="font-semibold text-silver">Asaad Zein</span>, exploring technology, engineering, and more.
+            Welcome to my blog collection Here you&apos;ll find posts made by me, <span className="font-semibold text-silver">Asaad Zein</span>, exploring technology, engineering, and more.
           </p>
         </header>
         <section className="mb-12 animate-fade-in">
