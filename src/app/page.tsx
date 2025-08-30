@@ -170,6 +170,9 @@ export default function Home() {
               <div className="service-icon">
                 <i className="fab fa-linux"></i>
               </div>
+            <h4 className="text-lg font-bold">
+              Building Custom Linux Distributions and Applications
+            </h4>
             </div>
             {/* Developer Tools and Utilities Card */}
             <div className="service-card">
@@ -177,7 +180,7 @@ export default function Home() {
                 <i className="fas fa-tools"></i>
               </div>
             <h4 className="text-lg font-bold">
-              {/* Add Title  */}
+              Maintaining and Developing OpenSource Projects and Developer Tools
             </h4>
             <p className="text-sm">
               {/* Add discription */}
@@ -188,6 +191,9 @@ export default function Home() {
               <div className="service-icon">
                 <i className="fas fa-brain"></i>
               </div>
+            <h4 className="text-lg font-bold">
+              Building Custom AI Models and Machine Learning Solutions
+            </h4>
             </div>
           </div>
         </div>
