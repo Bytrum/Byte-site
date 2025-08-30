@@ -211,7 +211,7 @@ export default function Home() {
               <div className="project-image">
                 <img src="https://i.ibb.co/8g1bXrvy/GSH.png" alt="GhostFreakOS" className="w-fit rounded-lg" />
                 <div className="project-overlay">
-                  <Link href="" className="btn btn-outline">
+                  <Link href="/projects" className="btn btn-outline">
                     View Details
                   </Link>
                 </div>
@@ -327,7 +327,7 @@ export default function Home() {
                   <AvatarImage src="https://github.com/basmalamahmoud32010-ai.png" />
                   </Avatar>
               </div>
-              <h3>Basmala Mahmoad</h3>
+              <h3>Basmala Mahmoud</h3>
               <h3>Social Media Manager</h3>
             </div>
           </div>

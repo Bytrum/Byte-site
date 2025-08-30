@@ -9,7 +9,7 @@ const teamMembers = {
     {
       name: 'Omar Sameh',
       role: 'CEO & Founder & Cybersecurity Expert',
-      bio: 'Visionary leader with 10+ years of experience in digital innovation and technology strategy.',
+      bio: 'Hi, Im Omar — Passionate about Red Teaming and Penetration testing, I explore and challenge limits .',
       avatar: 'https://github.com/om7iux.png',
       social: {
         github: 'https://github.com/om7iux',
@@ -35,12 +35,11 @@ const teamMembers = {
       },
     }
   ],
-  // Added This TO Don't Get TS Interface error 
   Developers: [
     {
       name: 'Asaad Zein',
       role: 'Supervisor & Ai Developer',
-      bio: 'Experienced software engineer passionate about clean code and user experience.',
+      bio: 'A 15 Years Old Boy Who Loves Coding And Electric Engineering And Data Science.',
       avatar: 'https://github.com/asaadzx.png',
       social: {
         linkedin: 'https://www.linkedin.com/in/asaad-zx/',
@@ -79,8 +78,8 @@ const teamMembers = {
 };
 
 const stats = [
-  { number: '5+', label: 'Projects Completed' },
-  { number: '10+', label: 'Years Experience' },
+  { number: '3', label: 'Projects Completed' },
+  { number: '4', label: 'Years Experience' },
   { number: '24/7', label: 'Support Available' }
 ];
 

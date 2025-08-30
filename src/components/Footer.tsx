@@ -38,7 +38,7 @@ export default function Footer() {
             <h4>Services</h4>
             <ul>
               <li><a href="#">Cybersecurity Services</a></li>
-              <li><a href="#">Blogs and Docs</a></li>
+              <li><a href="./Blogs">Blogs and Docs</a></li>
               <li><a href="#">Linux Distro and Apps</a></li>
               <li><a href="#">Tools To Help Developers</a></li>
               <li><a href="#">AI Models</a></li>
