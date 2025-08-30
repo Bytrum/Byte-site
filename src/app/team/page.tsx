@@ -51,6 +51,19 @@ const teamMembers = {
       }
     },
     {
+      name: 'Abd Elaziz Mohamed',
+      role: 'Cybersecurity Expert',
+      bio: 'Detail-oriented cybersecurity specialist with a knack for identifying vulnerabilities and enhancing system security.',
+      avatar: 'https://github.com/haunter4e.png',
+      social: {
+        github: 'https://github.com/haunter4e',
+        linkedin: '',
+        discord: 'https://discord.com/users/939600444961996810',
+        instagram: 'https://www.instagram.com/k.i.l.lq/',
+        portfolio: ''
+      }
+    },
+    {
       name: 'Ahmed Shafik',
       role: 'Supervisor & Ai Developer & Cybersecurity Expert',
       bio: 'Skilled developer with a passion for intuitive and beautiful user interfaces.',

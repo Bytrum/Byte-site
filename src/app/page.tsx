@@ -269,6 +269,17 @@ export default function Home() {
           <h2 className="section-title">Meet Our Team</h2>
           <div className="team-grid">
 
+            {/* Ahmed Shafik */}
+            <div className="team-member">
+              <div className="member-avatar">
+                  <Avatar className="size-40">
+                  <AvatarImage src="https://github.com/Lazysniperz.png" />
+                  </Avatar>
+              </div>
+              <h3>Ahmed Shafik</h3>
+              <h3>Software Engineer and Manager</h3>
+            </div>
+
             {/* Omar Sameh */}
             <div className="team-member">
               <div className="member-avatar">
@@ -279,7 +290,7 @@ export default function Home() {
               <h4>Omar Sameh</h4>
               <h3>Ceo & Founder </h3>
             </div>  
-
+            
             {/* Asaad Zein */}
             <div className="team-member">
               <div className="member-avatar">
@@ -291,17 +302,18 @@ export default function Home() {
               <h3>Software Engineer and Manager</h3>
             </div>
 
-            {/* Ahmed Shafik */}
+            
+            {/* Abd Elaziz */}
             <div className="team-member">
               <div className="member-avatar">
                   <Avatar className="size-40">
-                  <AvatarImage src="https://github.com/Lazysniperz.png" />
+                  <AvatarImage src="https://github.com/haunter4e.png" />
                   </Avatar>
               </div>
-              <h3>Ahmed Shafik</h3>
-              <h3>Software Engineer and Manager</h3>
+              <h3>Abd Elaziz</h3>
+              <h3>Cyber Security Agent</h3>
             </div>
-            
+
             {/* Basmala mahmoad */}
             <div className="team-member">
               <div className="member-avatar">
