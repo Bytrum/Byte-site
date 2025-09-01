@@ -295,7 +295,7 @@ export default function Contact() {
                 <i className="fas fa-envelope"></i>
               </div>
               <h3>Email Us</h3>
-              <p>hello@byte.com</p>
+              <p></p>
               <p className="contact-note">We&apos;ll respond within 24 hours</p>
             </div>
 
@@ -304,7 +304,7 @@ export default function Contact() {
                 <i className="fas fa-phone"></i>
               </div>
               <h3>Call Us</h3>
-              <p>+1 (555) 123-4567</p>
+              <p></p>
               <p className="contact-note">Mon-Fri 9AM-6PM EST</p>
             </div>
 
@@ -313,7 +313,7 @@ export default function Contact() {
                 <i className="fas fa-map-marker-alt"></i>
               </div>
               <h3>Visit Us</h3>
-              <p>123 Innovation St, Tech City</p>
+              <p>Egypt</p>
               <p className="contact-note">Schedule a meeting</p>
             </div>
           </div>
