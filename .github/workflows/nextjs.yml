@@ -16,6 +16,8 @@ concurrency:
 env:
   supabaseUrl: ${{ secrets.SUPABASE_URL }}
   supabaseKey: ${{ secrets.SUPABASE_ANON_KEY }}
+  discordWebhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+  discordSupportWebhook: ${{ secrets.DISCORD_SUPPORT_WEBHOOK }}
 jobs:
   build:
     runs-on: ubuntu-latest
