@@ -99,7 +99,7 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || '';
+      const webhookUrl = process.env.DISCORD_WEBHOOK_URL || '';
       
       // Contact form embed
       const embed = {
@@ -170,7 +170,7 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || '';
+      const webhookUrl = process.env.DISCORD_WEBHOOK_URL || '';
       
       // Project request embed
       const embed = {
