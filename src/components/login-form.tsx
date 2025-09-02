@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Image from "next/image"
 import { supabase } from "@/lib/supabase"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 export function LoginForm({
@@ -17,9 +18,17 @@ export function LoginForm({
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!supabase) {
+      setError(
+        "Authentication is not available right now. Missing Supabase configuration."
+      )
+      return
+    }
+
     setLoading(true)
     setError("")
     const { error } = await supabase.auth.signInWithPassword({
@@ -29,8 +38,8 @@ export function LoginForm({
     setLoading(false)
     if (!error) {
       // Redirect or show success message
-      alert("Login successful! Welcome Back " + {email})
-      window.location.href = "./admin" 
+      // router.push('/admin') stays client-side safe
+      router.push("/admin")
     } else {
       setError(error.message)
     }
