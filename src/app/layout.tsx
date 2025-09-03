@@ -17,6 +17,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ChatBot from "@/components/ChatBot";
 import { site } from "@/lib/data";
+import { Analytics } from "@vercel/analytics/next"
 
 // Configure Inter font with Latin subset
 const inter = Inter({ subsets: ["latin"] });
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {children}
         <ChatBot />
+        <Analytics />
       </body>
     </html>
   );

@@ -254,7 +254,6 @@ export default function Contact() {
       <section className="page-header">
         <div className="container">
           <h1 className="section-title">Contact Us</h1>
-          <p className="page-subtitle">We'd love to hear from you. Please fill out the form below to get in touch.</p>
         </div>
       </section>
 
