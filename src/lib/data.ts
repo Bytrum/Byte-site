@@ -315,6 +315,7 @@ export const team = {
         avatar: 'https://github.com/Lazysniperz.png',
         social: {
           github: 'https://github.com/Lazysniperz',
+          linkedin: '',
           discord: 'https://discord.com/users/1259926188265308372',
           instagram: 'https://www.instagram.com/ssniperx/',
           portfolio: 'https://ghosty.is-a.dev',
