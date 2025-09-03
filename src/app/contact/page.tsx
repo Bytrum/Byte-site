@@ -71,12 +71,30 @@ export default function Contact() {
   // Handle contact form submission
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side validation
+    if (!contactData.name.trim() || !contactData.email.trim() || !contactData.message.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(contactData.email)) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      const webhookUrl = process.env.DISCORD_WEBHOOK_URL || '';
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || '';
       
+      if (!webhookUrl) {
+        throw new Error('Discord webhook URL not configured');
+      }
+
       // Contact form embed
       const embed = {
         title: "📧 New Contact Message Received",
@@ -84,27 +102,32 @@ export default function Contact() {
         color: 0x00ff00, // Green color for contact
         author: {
           name: "Byte Development Team",
-          icon_url: "https://github.com/bytrum.png"
+          icon_url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         },
         thumbnail: {
-          url: "https://github.com/bytrum.png"
+          url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         },
         fields: [
           {
             name: "👤 **CONTACT INFORMATION**",
-            value: `**Name:** ${contactData.name || "Not provided"}\n\n**Email:** ${contactData.email || "Not provided"}`,
+            value: `**Name:** ${contactData.name.trim()}\n\n**Email:** ${contactData.email.trim()}`,
             inline: false
           },
           {
             name: "💬 **MESSAGE**",
-            value: contactData.message || "No message provided",
+            value: contactData.message.trim() || "No message provided",
+            inline: false
+          },
+          {
+            name: "🌐 **SOURCE**",
+            value: "Byte Website Contact Form",
             inline: false
           }
         ],
         timestamp: new Date().toISOString(),
         footer: {
           text: "Byte Bot • Contact Messages",
-          icon_url: "https://github.com/bytrum.png"
+          icon_url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         }
       };
 
@@ -129,11 +152,21 @@ export default function Contact() {
           message: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        const errorText = await response.text();
+        console.error('Discord API error:', response.status, errorText);
+        throw new Error(`Discord API error: ${response.status}`);
       }
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      setSubmitStatus('error');
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          setSubmitStatus('error');
+        } else {
+          setSubmitStatus('error');
+        }
+      } else {
+        setSubmitStatus('error');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -142,45 +175,68 @@ export default function Contact() {
   // Handle project form submission
   const handleProjectSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Client-side validation
+    if (!projectData.name.trim() || !projectData.email.trim() || !projectData.message.trim()) {
+      setSubmitStatus('error');
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(projectData.email)) {
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      const webhookUrl = process.env.DISCORD_WEBHOOK_URL || '';
+      const webhookUrl = process.env.NEXT_PUBLIC_DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || '';
+      
+      if (!webhookUrl) {
+        throw new Error('Discord webhook URL not configured');
+      }
       
       // Project request embed
       const embed = {
         title: "🚀 New Project Request Received",
         description: "A new project submission has been received and requires your attention.",
-        color: 0xffffff, // White color for project requests
+        color: 0x0099ff, // Blue color for project requests
         author: {
           name: "Byte Development Team",
-          icon_url: "https://github.com/bytrum.png"
+          icon_url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         },
         thumbnail: {
-          url: "https://github.com/bytrum.png"
+          url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         },
         fields: [
           {
             name: "👤 **CLIENT INFORMATION**",
-            value: `**Name:** ${projectData.name || "Not provided"}\n\n**Email:** ${projectData.email || "Not provided"}`,
+            value: `**Name:** ${projectData.name.trim()}\n\n**Email:** ${projectData.email.trim()}`,
             inline: false
           },
           {
             name: "💼 **PROJECT DETAILS**",
-            value: `**Company:** ${projectData.company || "Not provided"}\n\n**Budget:** ${projectData.budget ? getBudgetDisplay(projectData.budget) : "Not specified"}\n\n**Timeline:** ${projectData.timeline ? getTimelineDisplay(projectData.timeline) : "Not specified"}`,
+            value: `**Company:** ${projectData.company.trim() || "Not provided"}\n\n**Budget:** ${projectData.budget ? getBudgetDisplay(projectData.budget) : "Not specified"}\n\n**Timeline:** ${projectData.timeline ? getTimelineDisplay(projectData.timeline) : "Not specified"}`,
             inline: false
           },
           {
             name: "📝 **PROJECT DESCRIPTION**",
-            value: projectData.message || "No message provided",
+            value: projectData.message.trim() || "No message provided",
+            inline: false
+          },
+          {
+            name: "🌐 **SOURCE**",
+            value: "Byte Website Project Request Form",
             inline: false
           }
         ],
         timestamp: new Date().toISOString(),
         footer: {
           text: "Byte Bot • Project Submissions",
-          icon_url: "https://github.com/bytrum.png"
+          icon_url: "https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
         }
       };
 
@@ -208,11 +264,21 @@ export default function Contact() {
           timeline: ''
         });
       } else {
-        throw new Error('Failed to send message');
+        const errorText = await response.text();
+        console.error('Discord API error:', response.status, errorText);
+        throw new Error(`Discord API error: ${response.status}`);
       }
     } catch (error) {
       console.error('Error submitting project form:', error);
-      setSubmitStatus('error');
+      if (error instanceof Error) {
+        if (error.name === 'AbortError') {
+          setSubmitStatus('error');
+        } else {
+          setSubmitStatus('error');
+        }
+      } else {
+        setSubmitStatus('error');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -320,14 +386,24 @@ export default function Contact() {
               {submitStatus === 'success' && (
                 <div className="alert alert-success">
                   <i className="fas fa-check-circle"></i>
-                  <span>Thank you for your message! We&apos;ll get back to you soon.</span>
+                  <span>
+                    {formType === 'contact' 
+                      ? "Thank you for your message! We'll get back to you within 24 hours."
+                      : "Thank you for your project request! We'll review it and get back to you soon."
+                    }
+                  </span>
                 </div>
               )}
               
               {submitStatus === 'error' && (
                 <div className="alert alert-error">
                   <i className="fas fa-exclamation-circle"></i>
-                  <span>Sorry, there was an error sending your message. Please try again.</span>
+                  <span>
+                    {formType === 'contact'
+                      ? "Please check your information and try again. Make sure all required fields are filled and email is valid."
+                      : "Please check your project details and try again. Make sure all required fields are filled and email is valid."
+                    }
+                  </span>
                 </div>
               )}
 
@@ -383,7 +459,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <>
                         <i className="fas fa-spinner fa-spin"></i>
-                        Sending...
+                        Sending Message...
                       </>
                     ) : (
                       'Send Message'
