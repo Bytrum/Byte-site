@@ -1,7 +1,7 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PRIVET_SUPABASE_URL ?? "";
-const supabaseKey = process.env.NEXT_PRIVET_SUPABASE_ANON_KEY ?? "";
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 
 // Guard createClient so static pre-render and server builds won't crash when
 // environment variables are not present during the build. In Vercel you must
