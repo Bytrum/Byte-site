@@ -3,85 +3,10 @@
 import { Avatar,  AvatarImage } from "@/components/ui/avatar"
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { team as teamData } from '@/lib/data';
 
-const teamMembers = {
-  Owner: [
-    {
-      name: 'Omar Sameh',
-      role: 'CEO & Founder & Cybersecurity Expert',
-      bio: 'Hi, Im Omar — Passionate about Red Teaming and Penetration testing, I explore and challenge limits .',
-      avatar: 'https://github.com/om7iux.png',
-      social: {
-        github: 'https://github.com/om7iux',
-        linkedin: 'https://www.linkedin.com/in/om7iux/',
-        discord: 'https://discord.com/users/1128989531346059364',
-        instagram: '',
-        portfolio: ''
-      }
-    }
-  ],
-  Managers: [
-    {
-      name: 'Basmala Mahmoud',
-      role: 'Social Media Manager',
-      bio: 'Creative social media expert with a talent for engaging content and community building.',
-      avatar: 'https://github.com/basmalamahmoud32010-ai.png',
-      social: {
-        github: 'https://github.com/basmalamahmoud32010-a',
-        linkedin: '',
-        discord: '',
-        instagram: '',
-        portfolio: ''
-      },
-    }
-  ],
-  Developers: [
-    {
-      name: 'Asaad Zein',
-      role: 'Supervisor & Ai Developer',
-      bio: 'A 15 Years Old Boy Who Loves Coding And Electric Engineering And Data Science.',
-      avatar: 'https://github.com/asaadzx.png',
-      social: {
-        linkedin: 'https://www.linkedin.com/in/asaad-zx/',
-        github: 'https://github.com/asaadzx ',
-        discord: 'https://discord.com/users/913099850982248528',
-        instagram: 'https://www.instagram.com/asaad.zein.1/',
-        portfolio: 'https://asaadzx.is-a.dev/'
-      }
-    },
-    {
-      name: 'Abd Elaziz Mohamed',
-      role: 'Cybersecurity Expert',
-      bio: 'Detail-oriented cybersecurity specialist with a knack for identifying vulnerabilities and enhancing system security.',
-      avatar: 'https://github.com/haunter4e.png',
-      social: {
-        github: 'https://github.com/haunter4e',
-        linkedin: '',
-        discord: 'https://discord.com/users/939600444961996810',
-        instagram: 'https://www.instagram.com/k.i.l.lq/',
-        portfolio: ''
-      }
-    },
-    {
-      name: 'Ahmed Shafik',
-      role: 'Supervisor & Ai Developer & Cybersecurity Expert',
-      bio: 'Skilled developer with a passion for intuitive and beautiful user interfaces.',
-      avatar: 'https://github.com/Lazysniperz.png',
-      social: {
-        github: 'https://github.com/Lazysniperz',
-        discord: 'https://discord.com/users/1259926188265308372',
-        instagram: 'https://www.instagram.com/ssniperx/',
-        portfolio: 'https://ghosty.is-a.dev'
-      },
-    },
-  ]
-};
-
-const stats = [
-  { number: '3', label: 'Projects Completed' },
-  { number: '4', label: 'Years Experience' },
-  { number: '24/7', label: 'Support Available' }
-];
+const teamMembers = teamData.groups;
+const stats = teamData.stats;
 
 export default function Team() {
   return (
@@ -90,11 +15,9 @@ export default function Team() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1 className="section-title">
-            Meet the <span className="byte-glow">Byte</span> Team
-          </h1>
+          <h1 className="section-title" dangerouslySetInnerHTML={{ __html: teamData.header.titleHtml }} />
           <p className="page-subtitle">
-            Our talented team of innovators, creators, and problem solvers
+            {teamData.header.subtitle}
           </p>
         </div>
       </section>

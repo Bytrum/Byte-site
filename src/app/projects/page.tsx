@@ -4,50 +4,22 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { projects as projectsData } from '@/lib/data';
 
-const projects = [
-  {
-    id: 1,
-    title: 'GhostFreakOS',
-    description: 'Custom Linux distribution optimized for new users who want to try arch linux with no bloat and security professionals with pre-installed development tools.',
-    category: 'linux',
-    tags: ['Arch Linux', 'Custom', 'Security'],
-    year: '2025',
-    duration: '1 month',
-    link: 'https://ghostfreak.is-local.org',
-    image: 'https://i.ibb.co/8g1bXrvy/GSH.png'
-  },
-  {
-    id: 2,
-    title: 'ZenShell',
-    description: 'A Linux Shell Built in C++ and configured by Lua',
-    category: 'dev',
-    tags: ['C++', 'Shell', 'Lua'],
-    year: '2025',
-    duration: '1 month',
-    link: 'https://github.com/asaadzx/zenshell',
-    image: '#'
-  }
-];
-
-const categories = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'pentest', label: 'Pentesting' },
-  { id: 'linux', label: 'Linux Distros' },
-  { id: 'dev', label: 'Linux and dev tools' },
-  { id: 'ai', label: 'AI & ML' }
-];
+const projects = projectsData.items;
+const categories = projectsData.categories;
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const [filteredProjects, setFilteredProjects] = useState(projects);
+  // Convert readonly data into a mutable array for state management
+  const [filteredProjects, setFilteredProjects] = useState(Array.from(projects));
 
   const handleFilter = (category: string) => {
     setActiveFilter(category);
     if (category === 'all') {
-      setFilteredProjects(projects);
+      setFilteredProjects(Array.from(projects));
     } else {
-      setFilteredProjects(projects.filter(project => project.category === category));
+      setFilteredProjects(Array.from(projects.filter(project => project.category === category)));
     }
   };
 
@@ -58,12 +30,8 @@ export default function Projects() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1 className="section-title">
-            <span className="byte-glow">Byte</span> Projects
-          </h1>
-          <p className="page-subtitle">
-            Discover our innovative solutions and cutting-edge applications
-          </p>
+          <h1 className="section-title" dangerouslySetInnerHTML={{ __html: projectsData.header.titleHtml }} />
+          <p className="page-subtitle">{projectsData.header.subtitle}</p>
         </div>
       </section>
 

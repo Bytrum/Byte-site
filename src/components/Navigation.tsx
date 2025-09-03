@@ -17,6 +17,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { nav, site } from '@/lib/data';
 
 export default function Navigation() {
   // State for mobile menu toggle
@@ -35,8 +36,8 @@ export default function Navigation() {
         <div className="nav-logo">
           <Link href="/" className="logo-link">
             <Image
-              src="https://github.com/Bytrum/.github/blob/main/Bytrum_banner.png?raw=true"
-              alt="Byte Logo"
+              src={site.logoUrl}
+              alt={`${site.name} Logo`}
               width={180}
               height={60}
               className="logo-image"
@@ -49,31 +50,13 @@ export default function Navigation() {
 
         {/* Desktop Navigation Menu */}
         <ul className={`nav-menu ${isMobileMenuOpen ? 'active' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
-          <li className="nav-item">
-            <Link href="/" className={`nav-link ${pathname === '/' ? 'active' : ''}`}>
-              Home
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/about" className={`nav-link ${pathname === '/about' ? 'active' : ''}`}>
-              About
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/projects" className={`nav-link ${pathname === '/projects' ? 'active' : ''}`}>
-              Projects
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/team" className={`nav-link ${pathname === '/team' ? 'active' : ''}`}>
-              Team
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link href="/contact" className={`nav-link ${pathname === '/contact' ? 'active' : ''}`}>
-              Contact
-            </Link>
-          </li>
+          {nav.items.map((item) => (
+            <li key={item.href} className="nav-item">
+              <Link href={item.href} className={`nav-link ${pathname === item.href ? 'active' : ''}`}>
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         {/* Mobile Menu Toggle Button */}

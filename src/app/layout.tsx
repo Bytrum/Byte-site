@@ -16,16 +16,17 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ChatBot from "@/components/ChatBot";
+import { site } from "@/lib/data";
 
 // Configure Inter font with Latin subset
 const inter = Inter({ subsets: ["latin"] });
 
 // Global metadata for SEO and social sharing
 export const metadata: Metadata = {
-  title: "Byte - Digital Innovation Team",
-  description: "Byte is a cutting-edge digital innovation team specializing in cybersecurity services, Linux distributions, developer tools, AI models, and technical documentation.",
-  keywords: "Byte, digital innovation, cybersecurity, Linux distributions, developer tools, AI models, technical documentation, technology, software development",
-  authors: [{ name: "Byte Team" }],
+  title: `${site.name} - ${site.tagline}`,
+  description: site.description,
+  keywords: site.keywords,
+  authors: [{ name: site.author }],
 };
 
 // Viewport configuration for responsive design

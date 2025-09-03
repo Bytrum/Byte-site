@@ -16,6 +16,7 @@
 import { BlurFade } from "@/components/magicui/blur-fade";
 
 import Link from 'next/link';
+import { site, social, footer } from '@/lib/data';
 
 export default function Footer() {
   return (
@@ -25,11 +26,11 @@ export default function Footer() {
         <div className="footer-content">
           {/* Company Information Section */}
           <div className="footer-section">
-            <h3 className="byte-glow">Byte</h3>
-            <p>Digital innovation at its finest. We create solutions that matter.</p>
+            <h3 className="byte-glow">{site.name}</h3>
+            <p>{footer.blurb}</p>
             {/* Social Media Links */}
             <div className="social-links">
-              <a href="https://github.com/Bytrum"><i className="fab fa-github"></i></a>
+              <a href={social.github}><i className="fab fa-github"></i></a>
             </div>
           </div>
 
@@ -37,11 +38,15 @@ export default function Footer() {
           <div className="footer-section">
             <h4>Services</h4>
             <ul>
-              <li><a href="#">Cybersecurity Services</a></li>
-              <li><a href="./Blogs">Blogs and Docs</a></li>
-              <li><a href="#">Linux Distro and Apps</a></li>
-              <li><a href="#">Tools To Help Developers</a></li>
-              <li><a href="#">AI Models</a></li>
+              {footer.services.map((item) => (
+                <li key={item.label}>
+                  {item.href.startsWith('/') ? (
+                    <Link href={item.href}>{item.label}</Link>
+                  ) : (
+                    <a href={item.href}>{item.label}</a>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -49,24 +54,25 @@ export default function Footer() {
           <div className="footer-section">
             <h4>Company</h4>
             <ul>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/team">Our Team</Link></li>
-              <li><Link href="/projects">Projects</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+              {footer.company.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Information Section */}
           <div className="footer-section">
             <h4>Contact</h4>
-            <p>hello@byte-team.website</p>
-            <p>Egypt</p>
+            <p>{site.contactEmail}</p>
+            <p>{site.location}</p>
           </div>
         </div>
 
         {/* Copyright Notice */}
         <div className="footer-bottom">
-          <p>&copy; 2026 <span className="byte-glow">Byte-Team</span>. All rights reserved.</p>
+          <p>&copy; {site.copyrightYear} <span className="byte-glow">{site.copyrightOwner}</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>

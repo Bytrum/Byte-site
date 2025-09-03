@@ -3,42 +3,11 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import { about } from '@/lib/data';
 
-const values = [
-  {
-    icon: 'fas fa-lightbulb',
-    title: 'Innovation',
-    description: 'We constantly push boundaries and explore new technologies to deliver cutting-edge solutions.'
-  },
-  {
-    icon: 'fas fa-users',
-    title: 'Collaboration',
-    description: 'We believe in the power of teamwork and foster a culture of open communication and mutual respect.'
-  },
-  {
-    icon: 'fas fa-star',
-    title: 'Excellence',
-    description: 'We strive for excellence in everything we do, from code quality to user experience.'
-  },
-  {
-    icon: 'fas fa-heart',
-    title: 'Passion',
-    description: 'Our team is passionate about technology and committed to creating meaningful digital experiences.'
-  }
-];
-
-const timeline = [
-  {
-    year: '2025',
-    title: 'The Birth of Byte',
-    description: 'Byte was founded with a vision to revolutionize digital experiences through innovation and cutting-edge technology.'
-  }
-];
-
-const technologies = [
-  'React', 'Next.js', 'Node.js', 'Python', 'TypeScript', 'Vue.js', 'Flutter', 'React Native',
-  'AWS', 'Docker', 'Kubernetes', 'MongoDB', 'PostgreSQL', 'Firebase', 'TensorFlow', 'Figma'
-];
+const values = about.values;
+const timeline = about.timeline;
+const technologies = about.technologies;
 
 export default function About() {
   return (
@@ -48,11 +17,9 @@ export default function About() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1 className="section-title">
-            About <span className="byte-glow">Byte</span>
-          </h1>
+          <h1 className="section-title" dangerouslySetInnerHTML={{ __html: about.header.titleHtml }} />
           <p className="page-subtitle">
-            We are a passionate team of digital innovators dedicated to creating exceptional experiences through technology and creativity.
+            {about.header.subtitle}
           </p>
         </div>
       </section>
@@ -62,21 +29,18 @@ export default function About() {
         <div className="container">
           <div className="mission-content">
             <div className="mission-text">
-              <h2 className="section-subtitle">Our Mission</h2>
-              <p className="mission-description">
-                At <span className="byte-glow">Byte</span>, we believe that technology should enhance human experiences, not complicate them. Our mission is to create digital solutions that are not only functional and beautiful but also intuitive and meaningful.
-              </p>
-              <p className="mission-description">
-                We work closely with our clients to understand their unique challenges and goals, then craft tailored solutions that drive real business value and user satisfaction.
-              </p>
-              <Link href="/contact" className="btn btn-primary">
+              <h2 className="section-subtitle">{about.mission.title}</h2>
+              {about.mission.paragraphs.map((p, i) => (
+                <p key={i} className="mission-description">{p}</p>
+              ))}
+              <Link href={about.mission.cta.href} className="btn btn-primary">
                 <span className="btn-glow"></span>
-                Get In Touch
+                {about.mission.cta.label}
               </Link>
             </div>
             <div className="mission-visual">
               <div className="mission-image">
-                  <i className="fas fa-rocket"></i>
+                  <i className={about.mission.iconClass}></i>
               </div>
             </div>
           </div>

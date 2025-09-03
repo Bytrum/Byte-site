@@ -17,34 +17,10 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import { contact as contactPageData, site } from '@/lib/data';
 
-// FAQ items with questions and answers about Byte's services
-const faqItems = [
-  {
-    question: 'What services does Byte offer?',
-    answer: 'We offer comprehensive digital solutions including cybersecurity services, technical documentation and blogs, custom Linux distributions and applications, developer tools and utilities, and custom AI models. Our team specializes in creating secure, innovative solutions using cutting-edge technologies.'
-  },
-  {
-    question: 'How long does a typical project take?',
-    answer: 'Project timelines vary depending on complexity and scope. A simple website might take 2-4 weeks, while a complex application could take 3-6 months. We provide detailed timelines during our initial consultation.'
-  },
-  {
-    question: 'Do you work with startups and small businesses?',
-    answer: 'Absolutely! We work with businesses of all sizes, from startups to enterprise companies. We tailor our approach to meet your specific needs and budget requirements.'
-  },
-  {
-    question: 'What technologies do you use?',
-    answer: 'We use modern, industry-standard technologies including React, Next.js, Node.js, Python, Flutter, and more. We choose the best technology stack for each project based on requirements and goals.'
-  },
-  {
-    question: 'Do you provide ongoing support and maintenance?',
-    answer: 'Yes, we offer comprehensive support and maintenance packages to ensure your digital solutions continue to perform optimally. This includes updates, security patches, and technical support.'
-  },
-  {
-    question: 'How do you handle project communication?',
-    answer: 'We maintain transparent communication throughout the project lifecycle. You\'ll have a dedicated project manager and regular check-ins to keep you updated on progress and address any questions.'
-  }
-];
+// FAQ items sourced from centralized data
+const faqItems = contactPageData.faqItems;
 
 export default function Contact() {
   // Form type state
@@ -277,12 +253,8 @@ export default function Contact() {
       {/* Page Header */}
       <section className="page-header">
         <div className="container">
-          <h1 className="section-title">
-            Get In Touch with <span className="byte-glow">Byte</span>
-          </h1>
-          <p className="page-subtitle">
-            Ready to start your next project? Let&apos;s discuss how we can help bring your vision to life.
-          </p>
+          <h1 className="section-title">Contact Us</h1>
+          <p className="page-subtitle">We'd love to hear from you. Please fill out the form below to get in touch.</p>
         </div>
       </section>
 
@@ -290,32 +262,23 @@ export default function Contact() {
       <section className="contact-info-section">
         <div className="container">
           <div className="contact-info-grid">
-            <div className="contact-info-card">
-              <div className="contact-icon">
-                <i className="fas fa-envelope"></i>
-              </div>
-              <h3>Email Us</h3>
-              <p></p>
-              <p className="contact-note">We&apos;ll respond within 24 hours</p>
-            </div>
-
-            <div className="contact-info-card">
-              <div className="contact-icon">
-                <i className="fas fa-phone"></i>
-              </div>
-              <h3>Call Us</h3>
-              <p></p>
-              <p className="contact-note">Mon-Fri 9AM-6PM EST</p>
-            </div>
-
-            <div className="contact-info-card">
-              <div className="contact-icon">
-                <i className="fas fa-map-marker-alt"></i>
-              </div>
-              <h3>Visit Us</h3>
-              <p>Egypt</p>
-              <p className="contact-note">Schedule a meeting</p>
-            </div>
+            {contactPageData.info.map((info, idx) => {
+              const value = info.valueFrom === 'site.contactEmail'
+                ? site.contactEmail
+                : info.valueFrom === 'site.contactPhone'
+                ? site.contactPhone
+                : site.location;
+              return (
+                <div key={idx} className="contact-info-card">
+                  <div className="contact-icon">
+                    <i className={info.iconClass}></i>
+                  </div>
+                  <h3>{info.title}</h3>
+                  <p>{value}</p>
+                  <p className="contact-note">{info.note}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
